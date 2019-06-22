@@ -1,15 +1,7 @@
 <template>
-  <div style="background-color: red">
-    <!--<h1 style="color: #409EFF;">MyBlog</h1>-->
-    <img src="" alt="logo">
-    <span>MyBolg</span>
-    <!--<ul class="common-ul">-->
-      <!--<router-link tag="li" to="/baseinfo">-->
-        <!--<a>信息录入</a></router-link>-->
-      <!--<router-link tag="li" to="/listinfo">-->
-        <!--<a>信息展示</a>-->
-      <!--</router-link>-->
-    <!--</ul>-->
+  <div class="baseStyle">
+    <img src="../images/logo.png" alt="logo">
+    <span class="logoName"> MyBolg lalalal-=-=-=-=-=--=-</span>
   </div>
 </template>
 
@@ -19,25 +11,28 @@
 
 <style scoped lang="less">
 
-  .common-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
 
-    li {
-      float: left;
-      width: 50%;
-      /*height: 50px;*/
-      /*line-height: 50px;*/
-      text-align: center;
-      font-size: 20px;
-      /*padding: 0 10px;*/
-      a{
-        text-decoration: none;
-      }
-
+  .baseStyle{
+    padding: 10px 10%;
+    height: 60%;
+    img{
+      height: 100%;
+      display: inline-block;
+      padding-right: 50px;
+      vertical-align: middle;
+    }
+    .logoName{
+      font-size: 26px;
+      font-weight: bolder;
+      vertical-align: middle;
     }
 
+    .other{
+      float: right;
+      font-size: 26px;
+      font-weight: bolder;
+      vertical-align: middle;
+    }
   }
 
 </style>

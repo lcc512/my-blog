@@ -1,12 +1,13 @@
 <template>
-  <div style="background-color: gold">
+  <div class="baseStyle">
     <ul class="common-ul">
-    <router-link tag="li" to="/">
-    <a>HOME</a></router-link>
-    <router-link tag="li" to="/article">
-    <a>Article</a>
-    </router-link>
+      <router-link tag="li" exact to="/">
+        <a>HOME</a></router-link>
+      <router-link tag="li" to="/article">
+        <a>Article</a>
+      </router-link>
     </ul>
+    <p>Copyright@xxx,,,</p>
   </div>
 </template>
 
@@ -18,18 +19,20 @@
 
 <style scoped lang="less">
 
-  .common-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+
+  .baseStyle{
+    margin-left: 20px;
+
+    border-right: 1px solid  #409EFF;
+  }
+
+  ul {
 
     li {
-      /*height: 50px;*/
-      /*line-height: 50px;*/
       text-align: center;
       font-size: 20px;
       padding: 10px 0;
-      a{
+      a {
         text-decoration: none;
       }
 

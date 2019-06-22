@@ -1,5 +1,7 @@
 <template>
   <div>
+
+    <h2>主页</h2>
     Paperleaf is clean and minimal Ghost theme that you can use for many different types of websites. It can power blog, portfolio, recipes collection, books reading list, links list...all comes down to the idea you have on your mind.
 
     Posts on home and archive pages are laid out nicely in masonry grid that gives users a quick look at all published posts.

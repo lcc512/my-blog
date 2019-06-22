@@ -15,6 +15,8 @@ module.exports={
     path:path.join(__dirname,'./dist/'),
     filename:'bundle.js'//打包后的js文件名称
   },
+  //配置这条，报错的时候提示信息会定位到编译前的各个文件中
+  devtool: "inline-source-map",
   //这里开始配置
   plugins:[
     // 该插件的作用就是把 index.html 打包到你的 bundle.js  文件所属目录
@@ -38,7 +40,7 @@ module.exports={
     hot:true,
     proxy: {
       '/myBlog': {
-        target: 'http://127.0.0.1:3000',
+        target: 'http://127.0.0.1:3333',
         // pathRewrite: {'^/api': ''},
         // secure:false,
         changeOrigin: true
@@ -50,7 +52,8 @@ module.exports={
     vue:'Vue',
     'vue-router':'VueRouter',
     axios:'axios',
-    'element-ui': 'element-ui'
+    'element-ui': 'element-ui',
+    vueQuillEditor:'vue-quill-editor'
   },
   // 添加css支持
   module: {

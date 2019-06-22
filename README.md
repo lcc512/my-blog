@@ -4,6 +4,7 @@
 - element-ui    样式框架
 - vueMVC        数据交互
 - vue-router    路由导航
+- vue-quill-editor  富文本插件
 
 ##其他
 - 样式参照
@@ -16,6 +17,14 @@ npm run dev
 npm run build
 ```
 
+##Git
+```shell
+git clone https://github.com/lcc512/my-blog.git
+```
+
+
 ##已完成
-- 
+- 文章列表页
+- 文章新增
+- 文章展示
     

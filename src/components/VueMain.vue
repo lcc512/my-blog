@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: blue">
+  <div class="baseStyle">
     <router-view></router-view>
   </div>
 </template>
@@ -11,5 +11,10 @@
 </script>
 
 <style scoped>
+
+  .baseStyle{
+    /*background-color: gold;*/
+
+  }
 
 </style>
