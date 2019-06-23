@@ -46,7 +46,7 @@
       async onSubmit() {
         try {
 
-          this.formData.content=this.formData.content.replace(/\n|\r\n/g,"<br/>")
+          this.formData.content=this.formData.content.replace(/'/g,"''")
 
           const {data} = await axios.post('/myBlog/article/', this.formData)
           console.log(data)

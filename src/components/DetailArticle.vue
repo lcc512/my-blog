@@ -9,7 +9,7 @@
       <el-button type="danger" icon="el-icon-delete" circle @click="toDeleteArticle"></el-button>
     </el-row>
     <p class="title"><i class="el-icon-s-opportunity"></i>{{title}}</p>
-    <p class="common-info">{{createTime}} | 更新于：{{updateTime}}</p>
+    <p class="common-info">发布于：{{createTime}} | 更新于：{{updateTime}}</p>
     <div class="content" v-html="content"></div>
   </div>
 </template>
@@ -100,7 +100,7 @@
   .content {
     background-color: #F2F6FC;
     border-radius: 8px;
-    padding: 20px 10px;
+    padding: 20px 40px;
     text-indent: 32px;
     line-height: 32px;
   }

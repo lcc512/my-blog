@@ -15,7 +15,7 @@
         <el-main>
 
           <el-row type="flex" justify="center">
-            <el-col :xs="24" :sm="24" :md="18" :lg="18" :xl="16">
+            <el-col :xs="24" :sm="20" :md="22" :lg="18" :xl="18">
               <vue-main></vue-main>
             </el-col>
           </el-row>
@@ -72,6 +72,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
   }
 
   /*通用类样式*/
@@ -86,27 +87,22 @@
   .common-background-color{
     background-color: #409EFF;
   }
+
+
+  @media (max-width: 991px) {
+    .el-aside{
+      display: none;
+    }
+    .el-header{
+     height: 200px!important;
+    }
+  }
+
+
+
+
   /*测试样式*/
-  .el-col {
-    border-radius: 4px;
-  }
 
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
-
-  .bg-purple {
-    background: #d3dce6;
-  }
-
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
-
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
 
   /*测试样式结束*/
 

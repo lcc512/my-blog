@@ -2,9 +2,13 @@
 const path=require('path')
 const htmlWebpackPlugin=require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const webpack=require('webpack');
 
 module.exports={
+
   // js文件入口
   // 加babel 提供低版本的兼容性，但是包就大了
   // entry:['babel-polyfill','./src/main.js'],
@@ -13,7 +17,7 @@ module.exports={
   output:{
     // 拼接成绝对路径
     path:path.join(__dirname,'./dist/'),
-    filename:'bundle.js'//打包后的js文件名称
+    filename:'bundle.js',//打包后的js文件名称
   },
   //配置这条，报错的时候提示信息会定位到编译前的各个文件中
   devtool: "inline-source-map",
@@ -29,7 +33,15 @@ module.exports={
     // make sure to include the plugin for the magic
     new VueLoaderPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+
+
+    // 打包成分分析
+    // new BundleAnalyzerPlugin(),
+    //然后再package.json里面加这一条
+    //"analyz": "NODE_ENV=production npm_config_report=true npm run build"
+
+
   ],
   devServer: {
     //配置webpack-dev-server 的 www 目录
@@ -52,8 +64,7 @@ module.exports={
     vue:'Vue',
     'vue-router':'VueRouter',
     axios:'axios',
-    'element-ui': 'element-ui',
-    vueQuillEditor:'vue-quill-editor'
+    'vue-quill-editor':'VueQuillEditor'
   },
   // 添加css支持
   module: {
