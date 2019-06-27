@@ -9,6 +9,9 @@
       <router-link tag="li" to="/about">
         <a>About</a>
       </router-link>
+      <router-link tag="li" to="/testPage">
+        <a>测试页</a>
+      </router-link>
     </ul>
     <div class="footerInfo common-info">
       <p>Paperleaf © 2019</p>

@@ -18,6 +18,9 @@
           <router-link tag="li" to="/about">
             <a>About</a>
           </router-link>
+          <router-link tag="li" to="/testPage">
+            <a>测试页</a>
+          </router-link>
         </ul>
       </el-col>
 
@@ -33,46 +36,46 @@
 <style scoped lang="less">
 
 
-  .baseStyle{
+  .baseStyle {
     text-align: center;
     padding: 10px 10%;
     /*height: 60%;*/
-    img{
+    img {
       margin: 0 auto;
       display: block;
       height: 60px;
     }
-    .logoName{
+    .logoName {
       display: block;
       font-size: 26px;
       line-height: 60px;
       font-weight: bolder;
     }
 
-    .other{
+    .other {
       float: right;
       font-size: 26px;
       font-weight: bolder;
       vertical-align: middle;
     }
 
-    .otherMenu{
+    .otherMenu {
       text-align: center;
       padding-top: 30px;
       padding-bottom: 20px;
 
       border-bottom: 1px solid #409EFF;
 
-        li {
-          display: inline-block;
-          text-align: center;
-          font-size: 20px;
-          padding: 0 10px;
-          a {
-            text-decoration: none;
-          }
-
+      li {
+        display: inline-block;
+        text-align: center;
+        font-size: 20px;
+        padding: 0 10px;
+        a {
+          text-decoration: none;
         }
+
+      }
     }
 
   }
