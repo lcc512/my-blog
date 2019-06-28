@@ -1,6 +1,8 @@
 <template>
   <div class="baseStyle">
 
+    <!--<button @click="testFun">123123</button>-->
+    <!--{{testdata}}-->
 
     <el-button @click="resetDateFilter">清除日期过滤器</el-button>
     <el-button @click="clearFilter">清除所有过滤器</el-button>
@@ -72,9 +74,12 @@
 
   import axios from 'axios'
 
+  import VueCommon from './VueCommon.vue'
+
   export default {
     data() {
       return {
+        // testdata:commonVue.httpUrl,
         articleList: [],
         tableData: [{
           date: '2016-05-02',
@@ -104,6 +109,11 @@
       this.loadArticleList()
     },
     methods: {
+
+      // testFun(){
+      //
+      //   this.testdata=commonVue.getTagAllList()
+      // },
 
       resetDateFilter() {
         this.$refs.filterTable.clearFilter('date');

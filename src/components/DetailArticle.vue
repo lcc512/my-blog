@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="loading">
     <el-row type="flex" justify="end">
       <el-tooltip content="取消" placement="top-start">
         <el-button icon="el-icon-close" circle
@@ -70,6 +70,8 @@
 
   import axios from 'axios'
 
+  import VueCommon from './VueCommon.vue'
+
   export default {
     data() {
       return {
@@ -100,7 +102,9 @@
         },
 
         inputVisible: false,
-        inputValue: ''
+        inputValue: '',
+
+        loading:true
 
       }
     },
@@ -113,6 +117,7 @@
     }
     ,
     methods: {
+
       async loadArticle(id) {
 
         try {
@@ -130,6 +135,8 @@
           }
 
           this.tagList = article.tagList.split(',')
+
+          this.loading=false
 
         } catch (err) {
 
@@ -180,6 +187,10 @@
 
 
           window.alert('修改成功')
+
+          await VueCommon.setTagAllList(this.tagList)
+
+
           this.cancelEdit()
           this.loadArticle(id)
 
@@ -224,12 +235,12 @@
         let inputValue = this.inputValue;
 
         if (inputValue) {
-          if (this.formData.tagList != null || this.formData.tagList != '') {
+          if (this.tagList != null || this.tagList != '') {
 
 
-            if (this.formData.tagList.indexOf(inputValue) == -1) {
+            if (this.tagList.indexOf(inputValue) == -1) {
 
-              this.formData.tagList.push(inputValue);
+              this.tagList.push(inputValue);
             } else {
               window.alert('不允许有重复的标签')
             }

@@ -1,17 +1,24 @@
 <template>
   <div class="baseStyle">
 
-    <el-row>
-      <h4>标签筛选</h4>
+    <el-row style="padding-bottom: 10px;">
+      <el-switch
+        v-model="switchValue"
+        active-text="筛选"
+        inactive-text="不筛选">
+      </el-switch>
+    </el-row>
+    <el-row v-if="switchValue">
       <el-checkbox-group v-model="checkboxGroup">
         <el-checkbox-button v-for="city in checkTags" :label="city" :key="city">{{city}}</el-checkbox-button>
       </el-checkbox-group>
     </el-row>
 
     <el-row type="flex" justify="end">
+      <el-button v-if="switchValue" type="info" round @click="shuaxinTag">刷新标签</el-button>
       <el-button type="primary" round @click="toNewPage">新建</el-button>
     </el-row>
-    <ul>
+    <ul v-loading="loading">
 
       <li v-for="article in filterArticleList">
         <p class="title">
@@ -35,6 +42,8 @@
 
   import axios from 'axios'
 
+  import VueCommon from './VueCommon.vue'
+
   export default {
     data() {
       return {
@@ -42,12 +51,22 @@
         // 筛选后的列表
         currArticleList: [],
         checkboxGroup: [],
-        checkTags: ['测试', '前端', '123', '可删除']
+        checkTags: [],
+
+        switchValue: false,
+
+        loading:true
       }
     },
     computed: {
 
       filterArticleList() {
+
+
+        if (!this.switchValue) {
+          return this.articleList
+        }
+
 
         const tempList = []
 
@@ -62,7 +81,7 @@
           item.tagList.forEach(valItem => {
 
 
-            if (this.checkboxGroup.indexOf(valItem) !== -1 && item.tempFlag ===false) {
+            if (this.checkboxGroup.indexOf(valItem) !== -1 && item.tempFlag === false) {
 
               tempList.push(item)
 
@@ -81,8 +100,30 @@
     created() {
 
       this.loadArticleList()
+
+      this.setCheckTags()
+
+
+
+
     },
     methods: {
+
+      // 刷新标签
+      async shuaxinTag() {
+        await VueCommon.shuaxinTagAllList(this.articleList)
+
+        this.setCheckTags()
+      }
+      ,
+
+      async setCheckTags() {
+
+        this.checkTags = await VueCommon.getTagAllList()
+
+      }
+
+      ,
       toNewPage() {
         this.$router.push('/article/new')
       },
@@ -98,6 +139,8 @@
         })
 
         this.articleList = data.articles
+
+        this.loading=false
 
       }
     }

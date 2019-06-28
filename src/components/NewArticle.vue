@@ -51,6 +51,8 @@
   import axios from 'axios'
   import {mavonEditor} from 'mavon-editor'
 
+  import VueCommon from './VueCommon.vue'
+
   export default {
     data() {
       return {
@@ -80,6 +82,11 @@
           const {data} = await axios.post('/myBlog/article/', this.formData)
 
           this.$router.push(`/article/detail/${data.id}`)
+
+
+          await VueCommon.setTagAllList(this.formData.tagList)
+
+
         } catch (err) {
           console.dir(err)
         }
