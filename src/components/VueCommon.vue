@@ -71,9 +71,11 @@
         obj[i] = 1
       }
     }
+    
+    console.log(result)
 
     await axios.patch('/myBlog/options', {
-      tagAllList: currArr
+      tagAllList: result
     })
   }
 

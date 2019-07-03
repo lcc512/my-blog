@@ -15,7 +15,7 @@
         <el-main>
 
           <el-row type="flex" justify="center">
-            <el-col :xs="24" :sm="24" :md="22" :lg="22" :xl="22">
+            <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
               <vue-main></vue-main>
             </el-col>
           </el-row>
@@ -51,6 +51,7 @@
     padding: 0;
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     color: #303133;
+    min-width: 630px;
   }
 
   a {
@@ -79,7 +80,7 @@
 
   /*标题下面的文章属性信息*/
   .common-info {
-    text-align: right;
+    text-align: left;
     font-size: 12px;
     color: #909399;
   }

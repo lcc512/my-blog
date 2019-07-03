@@ -20,7 +20,9 @@ module.exports = {
     filename: 'bundle.js',//打包后的js文件名称
   },
   //配置这条，报错的时候提示信息会定位到编译前的各个文件中
-  devtool: "inline-source-map",
+  // devtool: "inline-source-map",
+  //配置这条，打包的时候用，减少体积（配置的是开发工具模式）
+  devtool: false,
   //这里开始配置
   plugins: [
     // 该插件的作用就是把 index.html 打包到你的 bundle.js  文件所属目录
@@ -36,7 +38,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
 
 
-    // 打包成分分析
+    // 打包成分分析，取消注释下面一条
     // new BundleAnalyzerPlugin(),
     //然后再package.json里面加这一条
     //"analyz": "NODE_ENV=production npm_config_report=true npm run build"

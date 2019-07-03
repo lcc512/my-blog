@@ -102,10 +102,13 @@
       // 绑定@imgAdd event
       $imgAdd(pos, $file) {
         // 第一步.将图片上传到服务器.
+        
+        console.log($file)
+
         var formdata = new FormData();
-        formdata.append('image', $file);
+        formdata.append('mark', $file);
         axios({
-          url: '/myBlog/uploadImg',
+          url: '/myBlog/upload',
           method: 'post',
           data: formdata,
           headers: {'Content-Type': 'multipart/form-data'},
@@ -117,7 +120,7 @@
            * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
            */
           console.log(url)
-          this.$refs.md.$img2Url(pos, url.data.url);
+          this.$refs.md.$img2Url(pos, url.data.imageUrl);
         })
       },
 

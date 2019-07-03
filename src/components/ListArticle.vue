@@ -1,23 +1,18 @@
 <template>
   <div class="baseStyle">
 
-    <el-row style="padding-bottom: 10px;">
-      <el-switch
-        v-model="switchValue"
-        active-text="筛选"
-        inactive-text="不筛选">
-      </el-switch>
-    </el-row>
-    <el-row v-if="switchValue">
+
+    <el-row style="margin-bottom: 20px">
       <el-checkbox-group v-model="checkboxGroup">
         <el-checkbox-button v-for="city in checkTags" :label="city" :key="city">{{city}}</el-checkbox-button>
       </el-checkbox-group>
     </el-row>
-
-    <el-row type="flex" justify="end">
-      <el-button v-if="switchValue" type="info" round @click="shuaxinTag">刷新标签</el-button>
-      <el-button type="primary" round @click="toNewPage">新建</el-button>
+    <el-row type="flex" justify="start" style="padding-bottom: 20px;">
+      <el-button type="primary" round plain @click="toNewPage">新建</el-button>
+      <el-button type="info" round plain @click="shuaxinTag">刷新标签</el-button>
     </el-row>
+
+
     <ul v-loading="loading">
 
       <li v-for="article in filterArticleList">
@@ -30,7 +25,7 @@
           </el-tag>
         </div>
         <p class="common-info">
-          <span>发布于：{{article.createTime}} | 更新于：{{article.updateTime}}</span>
+          <span>{{article.createTime}} | {{article.updateTime}}(更新)</span>
         </p>
       </li>
     </ul>
@@ -50,47 +45,53 @@
         articleList: [],
         // 筛选后的列表
         currArticleList: [],
+        // 筛选数组
         checkboxGroup: [],
         checkTags: [],
-
-        switchValue: false,
-
-        loading:true
+        loading: true
       }
     },
     computed: {
 
+      //筛选逻辑
+      //不选则显示全部
+      //选几个，文章所含标签包含选择的显示
       filterArticleList() {
 
 
-        if (!this.switchValue) {
-          return this.articleList
+        var tempList = []
+
+        if (this.checkboxGroup.length === 0) {
+          tempList = this.articleList
+          return tempList
         }
 
 
-        const tempList = []
-
         this.articleList.forEach(item => {
 
+          // 没有标签的跳出
           if (item.tagList == '' || item.tagList == null) return
 
           // console.log(item)
           // 设定一个临时flag，如果抽中了某一条就不再判断
           item.tempFlag = false
 
-          item.tagList.forEach(valItem => {
+          if (this.isContained(item.tagList, this.checkboxGroup)) {
+
+            tempList.push(item)
+          }
 
 
-            if (this.checkboxGroup.indexOf(valItem) !== -1 && item.tempFlag === false) {
+          // if (this.checkboxGroup.indexOf(valItem) !== -1 && item.tempFlag === false) {
+          //
+          //   tempList.push(item)
+          //
+          //   item.tempFlag = true
+          //
+          //   return
+          // }
 
-              tempList.push(item)
 
-              item.tempFlag = true
-
-              return
-            }
-
-          })
         })
 
         return tempList
@@ -104,10 +105,20 @@
       this.setCheckTags()
 
 
-
-
     },
     methods: {
+
+      // 网上找的判断数组是否包含方法，a包含b返回true
+      isContained(a, b) {
+        if (!(a instanceof Array) || !(b instanceof Array)) return false;
+        if (a.length < b.length) return false;
+        var aStr = a.toString();
+        for (var i = 0, len = b.length; i < len; i++) {
+          if (aStr.indexOf(b[i]) == -1) return false;
+        }
+        return true;
+      }
+      ,
 
       // 刷新标签
       async shuaxinTag() {
@@ -140,7 +151,7 @@
 
         this.articleList = data.articles
 
-        this.loading=false
+        this.loading = false
 
       }
     }
@@ -154,6 +165,7 @@
       li {
         border-radius: 10px;
         padding: 1px 0;
+        border-bottom: 1px solid #e4e7ec;
         &:hover {
           background-color: #F2F6FC;
         }
